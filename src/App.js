@@ -6,11 +6,11 @@ import HomePage from './components/HomePage';
 import Register from './components/Register';
 import FillFormMemory from './components/FillFormMemory'; 
 import ResponseSubmitted from './components/ResponseSubmitted';
-import AlumniRegister from './components/AlumniRegister'; // Import the AlumniRegister component
+import AlumniRegister from './components/AlumniRegister';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/yearbook-frontend">
       <div className="App">
         <Routes>
           <Route path="/register" element={<Register />} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="/fill-memory" element={<FillFormMemory />} />
           <Route path="/" element={<Login />} />
           <Route path="/response-submitted" element={<ResponseSubmitted />} />
-          <Route path="/alumni-register" element={<AlumniRegister />} /> {/* Add this line */}
+          <Route path="/alumni-register" element={<AlumniRegister />} />
         </Routes>
       </div>
     </Router>
