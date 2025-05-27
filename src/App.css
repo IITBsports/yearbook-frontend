@@ -1,0 +1,579 @@
+/* src/App.css */
+body{
+  overflow: hidden;
+}
+.response-submitted-page {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.instruction{
+  color: #0056b3;
+}
+.response-submitted-left {
+  flex: 1;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.response-submitted-left h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.response-submitted-left h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.response-submitted-left p {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.response-submitted-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #004494;
+}
+
+.fill-memory-page {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.fill-memory-left {
+  flex: 1;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.fill-memory-left h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.fill-memory-left h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fill-memory-left p {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.fill-memory-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group select,
+.form-group textarea,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #004494;
+}
+
+.home-page {
+  display: flex;
+  height: 100vh;
+}
+
+.welcome-section {
+  flex: 1;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.welcome-section .logo {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+.welcome-section h2, .welcome-section h1 {
+  margin: 0.5rem 0;
+}
+
+.welcome-section .carousel {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.welcome-section .carousel img {
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  margin-top: 70px;
+  object-fit: cover;
+}
+
+.fill-memory {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.fill-memory h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fill-memory p {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.memory-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.memory-button:hover {
+  background-color: #004494;
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+.welcome-section {
+  flex: 1;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.login-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-section h2 {
+  font-size: 3rem;
+  margin-bottom: 0rem;
+}
+
+.login-section p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #b4b4b4;
+  background-color: #cdcdcd;
+  border-radius: 4px;
+}
+
+.login-button,
+.register-button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-button:hover,
+.register-button:hover {
+  background-color: #004494;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.login-register {
+  position: relative;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ccc;
+  height: 100vh;
+}
+.login-register::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+  z-index: 1;
+}
+
+.login-register > * {
+  position: relative;
+  z-index: 2;
+}
+
+.bg {
+  background-image: url('bg2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ccc;
+  height: 100vh;
+}
+.bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+  z-index: 1;
+}
+
+.bg > * {
+  top: 0;
+  position: relative;
+  z-index: 2;
+}
+.stylish {
+  text-align:center ;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	font-size: 80px;
+  color: #ccc;
+	margin: 0;
+	padding: 1vw;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;	
+}
+.stylish h2 {
+	font-size: 8vw;
+	margin: 0;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;	
+}
+
+.effect-01 {
+	font-weight: 700;
+	text-shadow: 	
+		1px 1px 0px rgb(0, 0, 0),
+		2px 2px 0px rgba(21, 21, 21, 0.9),
+		3px 3px 0px rgba(49, 49, 49, 0.7),
+		4px 4px 0px rgba(83, 83, 83, 0.5),
+		10px 10px 20px rgba(0, 0, 0, 0.8);
+}
+.eleven h1 {
+  font-size:30px;
+  text-align:center; 
+  line-height:1.5em; 
+  font-family:"Playfair Display", 
+  serif; text-transform:uppercase;
+  letter-spacing: 2px; 
+  color:#ccc;
+  text-shadow: 	
+		1px 1px 0px rgb(0, 0, 0),
+		2px 2px 0px rgba(21, 21, 21, 0.9),
+		3px 3px 0px rgba(49, 49, 49, 0.7),
+		4px 4px 0px rgba(83, 83, 83, 0.5),
+		10px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+
+
+.login-container {
+
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Add these styles to your App.css or relevant CSS file */
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* src/App.css */
+.register-container {
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #494949;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+.register-page {
+  display: flex;
+  height: 100vh;
+}
+
+.welcome-section {
+  flex: 1;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.register-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.register-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-button,
+.alumni-register-button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-button:hover,
+.alumni-register-button:hover {
+  background-color: #004494;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.success {
+  color: green;
+  margin-bottom: 1rem;
+}
+.pe_verify_email{
+  margin-bottom: 10px;
+
+}
+@media (max-width: 768px) {
+  .welcome-section,
+  .response-submitted-left,
+  .fill-memory-left {
+    display: none;
+  }
+}
