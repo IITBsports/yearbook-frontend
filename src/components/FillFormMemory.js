@@ -267,7 +267,7 @@ const FillMemoryForm = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="photo">Add Photo: (Max 50MB)</label>
+            <label htmlFor="photo">Add Photo: (Max 20MB)</label>
             <input 
               type="file" 
               id="photo" 
@@ -284,30 +284,6 @@ const FillMemoryForm = () => {
                     maxWidth: '200px', 
                     maxHeight: '200px', 
                     objectFit: 'cover',
-                    borderRadius: '4px'
-                  }} 
-                />
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="video">Add Video: (Max 100MB)</label>
-            <input 
-              type="file" 
-              id="video" 
-              accept="video/*" 
-              onChange={handleVideoChange}
-              disabled={loading}
-            />
-            {videoPreview && (
-              <div className="preview" style={{ marginTop: '10px' }}>
-                <video 
-                  src={videoPreview} 
-                  controls 
-                  style={{ 
-                    maxWidth: '300px', 
-                    maxHeight: '200px',
                     borderRadius: '4px'
                   }} 
                 />
