@@ -8,6 +8,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [currentStep, setCurrentStep] = useState(1);
+  const [emailVerified, setEmailVerified] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +31,9 @@ const Register = () => {
         // Set the email state with the verified email
         setEmail(verifiedEmail);
         setSuccess('Email verified successfully');
+        setEmailVerified(true);
+        setCurrentStep(3);
+        setError('');
       } catch (error) {
         setError('Error fetching verified email');
       }
@@ -54,8 +59,9 @@ const Register = () => {
       const response = await axios.post('https://yearbook-website-1.onrender.com/api/register', { name, email, password });
       setSuccess(response.data.message);
       setError('');
-      // Redirect to login page after 2 seconds
-      setTimeout(() => navigate('/'), 2000);
+      setCurrentStep(4);
+      // Redirect to login page after 3 seconds
+      setTimeout(() => navigate('/'), 3000);
     } catch (error) {
       console.log('Error response:', error.response);
       setError('Error registering user');
@@ -63,62 +69,295 @@ const Register = () => {
     }
   };
 
+  const getStepStatus = (step) => {
+    if (step < currentStep) return 'completed';
+    if (step === currentStep) return 'active';
+    return 'pending';
+  };
+
   return (
     <div className='register-page'>
       <div className='welcome-section'>
         <img src='isc-logo.png' alt='ISC Logo' className='logo' />
-        <h1>Welcome to ISC Yearbook 2024!</h1>
+        <h1>Welcome to Sports Yearbook 2025!</h1>
         <div className='carousel'>
           <img src='image1.jpg' alt='Sport 1' />
           <img src='image2.jpg' alt='Sport 2' />
           <img src='image3.jpg' alt='Sport 3' />
         </div>
       </div>
+      
       <div className='register-section'>
         <h2>Register</h2>
-        <form onSubmit={handleRegister} autocomplete="off">
-          <div className="pe_verify_email" data-client-id="15525971141294700440"></div>
-          <div className='form-group'>
-            <label htmlFor='name'>Name:</label>
-            <input
-              type='text'
-              id='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+        
+        {/* Registration Steps Guide */}
+        <div className='registration-steps'>
+          <h3>Registration Process:</h3>
+          <div className='steps-container'>
+            <div className={`step ${getStepStatus(1)}`}>
+              <div className='step-number'>1</div>
+              <div className='step-content'>
+                <h4>Email Verification</h4>
+                <p>Click on "Sign in with email" and enter your LDAP email (@iitb.ac.in)</p>
+              </div>
+            </div>
+            
+            <div className={`step ${getStepStatus(2)}`}>
+              <div className='step-number'>2</div>
+              <div className='step-content'>
+                <h4>Enter OTP</h4>
+                <p>You will receive an OTP. Enter it to verify your email address</p>
+              </div>
+            </div>
+            
+            <div className={`step ${getStepStatus(3)}`}>
+              <div className='step-number'>3</div>
+              <div className='step-content'>
+                <h4>Complete Registration</h4>
+                <p>After email verification, enter your name and create a password</p>
+              </div>
+            </div>
+            
+            <div className={`step ${getStepStatus(4)}`}>
+              <div className='step-number'>4</div>
+              <div className='step-content'>
+                <h4>Ready to Login</h4>
+                <p>Use your registered email and password for future logins</p>
+              </div>
+            </div>
           </div>
-          <div className='form-group'>
-            <label htmlFor='email'>Email:</label>
-            <input
-              type='email'
-              id='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='password' >Password:</label>
-            <input
-              type='password'
-              id='password'
-              autocomplete="defaultpassword"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+        </div>
+
+        <form onSubmit={handleRegister} autoComplete="off">
+          {/* Step 1 & 2: Email Verification */}
+          {!emailVerified && (
+            <div className='verification-section'>
+              <h4>Step 1: Verify Your Email</h4>
+              <p className='instruction-text'>
+                Click the button below and enter your LDAP email address (@iitb.ac.in)
+              </p>
+              <div className="pe_verify_email" data-client-id="15525971141294700440"></div>
+            </div>
+          )}
+
+          {/* Step 3: Name and Password (shown after email verification) */}
+          {emailVerified && (
+            <div className='details-section'>
+              <h4>Step 3: Complete Your Registration</h4>
+              <div className='form-group'>
+                <label htmlFor='email'>Verified Email:</label>
+                <input
+                  type='email'
+                  id='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled
+                  className='verified-email'
+                />
+                <span className='verification-badge'>✓ Verified</span>
+              </div>
+              
+              <div className='form-group'>
+                <label htmlFor='name'>Name:</label>
+                <input
+                  type='text'
+                  id='name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder='Enter your full name'
+                  required
+                />
+              </div>
+              
+              <div className='form-group'>
+                <label htmlFor='password'>Password:</label>
+                <input
+                  type='password'
+                  id='password'
+                  autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder='Create a secure password'
+                  required
+                />
+              </div>
+              
+              <button type='submit' className='register-button'>
+                Complete Registration
+              </button>
+            </div>
+          )}
+
           {error && <p className='error'>{error}</p>}
           {success && <p className='success'>{success}</p>}
           
-          <button type='submit' className='register-button'>Register</button>
-          <button onClick={() => navigate('/alumni-register')} className='alumni-register-button'>
-            Register as Alumni
-          </button>
+          <div className='additional-options'>
+            <button 
+              type='button'
+              onClick={() => navigate('/alumni-register')} 
+              className='alumni-register-button'
+            >
+              Register as Alumni
+            </button>
+          </div>
         </form>
       </div>
+      
+      <style jsx>{`
+        .registration-steps {
+          margin-bottom: 0.5rem;
+          padding: 0.5rem;
+          background: #f8f9fa;
+          border-radius: 6px;
+          border: 1px solid #e9ecef;
+        }
+        
+        .registration-steps h3 {
+          margin-top: 0;
+          margin-bottom: 0.4rem;
+          color: #333;
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+        
+        .steps-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+        
+        .step {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+          padding: 0.4rem;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+        }
+        
+        .step.completed {
+          background: #d4edda;
+          border: 1px solid #c3e6cb;
+        }
+        
+        .step.active {
+          background: #fff3cd;
+          border: 1px solid #ffeaa7;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .step.pending {
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          opacity: 0.7;
+        }
+        
+        .step-number {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          font-size: 14px;
+          flex-shrink: 0;
+        }
+        
+        .step.completed .step-number {
+          background: #28a745;
+          color: white;
+        }
+        
+        .step.active .step-number {
+          background: #ffc107;
+          color: #212529;
+        }
+        
+        .step.pending .step-number {
+          background: #6c757d;
+          color: white;
+        }
+        
+        .step-content h4 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1rem;
+        }
+        
+        .step-content p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #666;
+        }
+        
+        .verification-section,
+        .details-section {
+          margin: 0.5rem 0;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: white;
+        }
+        
+        .verification-section h4,
+        .details-section h4 {
+          margin-top: 0;
+          color: #007bff;
+        }
+        
+        .instruction-text {
+          color: #666;
+          margin-bottom: 1rem;
+          font-style: italic;
+        }
+        
+        .verified-email {
+          background: #e8f5e8 !important;
+        }
+        
+        .verification-badge {
+          color: #28a745;
+          font-weight: bold;
+          margin-left: 0.5rem;
+        }
+        
+        .additional-options {
+          margin-top: 2rem;
+          padding-top: 1rem;
+          border-top: 1px solid #eee;
+          text-align: center;
+        }
+        
+        .form-group {
+          position: relative;
+        }
+        
+        @media (max-width: 768px) {
+          .registration-steps {
+            margin: 0.5rem 0;
+            padding: 0.4rem;
+          }
+          
+          .step {
+            padding: 0.3rem;
+          }
+          
+          .step-number {
+            width: 18px;
+            height: 18px;
+            font-size: 9px;
+          }
+          
+          .step-content h4 {
+            font-size: 0.75rem;
+          }
+          
+          .step-content p {
+            font-size: 0.65rem;
+          }
+        }
+      `}</style>
     </div>
   );
 };

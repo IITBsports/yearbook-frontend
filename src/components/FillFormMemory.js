@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './p.css';
 
 const FillMemoryForm = () => {
   const [selectedSport, setSelectedSport] = useState('');
@@ -13,6 +14,7 @@ const FillMemoryForm = () => {
   const [error, setError] = useState('');
   const [photoPreview, setPhotoPreview] = useState(null);
   const [videoPreview, setVideoPreview] = useState(null);
+  const [selectedPersonPhoto, setSelectedPersonPhoto] = useState(null);
   const navigate = useNavigate();
 
   // Get user data safely
@@ -55,13 +57,32 @@ const FillMemoryForm = () => {
     'Ultimate Frisbee':['Arti Kumar','Kapil Dedhia','Ishika Saini','Almaas Ummu Salma','Suraj Kumar','Karthickeyan V','Kuldeep Sankhat','Harshvardhan Ahirwar','Rujul Bhosale','Shruti Saraf','Dinesh Bomma','Arjun Sadananda','Sakthivel M','Utkarsh Tripathi','Vaibhav Verma','Chhavi','Pranav Adhyapak','Aswin Srivastava','Pooja Verma','Soumya Kedia'],
   };
 
+  // Function to get person's photo URL based on their name
+  const getPersonPhotoUrl = (personName) => {
+    if (!personName) return null;
+    // Convert name to a format suitable for filename
+    // Replace spaces with underscores and convert to lowercase
+    const fileName = personName.toLowerCase().replace(/\s+/g, '_');
+    return `photos/${fileName}.jpg`; // Assuming photos are stored in a 'photos' folder with .jpg extension
+  };
+
   const handleSportChange = (e) => {
     setSelectedSport(e.target.value);
     setSelectedName('');  // Reset selected name when sport changes
+    setSelectedPersonPhoto(null); // Reset person photo when sport changes
   };
 
   const handleNameChange = (e) => {
-    setSelectedName(e.target.value);
+    const selectedPersonName = e.target.value;
+    setSelectedName(selectedPersonName);
+    
+    // Set the selected person's photo
+    if (selectedPersonName) {
+      const photoUrl = getPersonPhotoUrl(selectedPersonName);
+      setSelectedPersonPhoto(photoUrl);
+    } else {
+      setSelectedPersonPhoto(null);
+    }
   };
 
   const handleDescriptionChange = (e) => {
@@ -200,11 +221,34 @@ const FillMemoryForm = () => {
     <div className="fill-memory-page">
       <div className="fill-memory-left">
         <img src='isc-logo.png' alt='ISC Logo' className='logo' />
-        <h2>ISC YEARBOOK</h2>
+        <h2>SPORTS YEARBOOK</h2>
         <h3>Fill Your Memory</h3>
         <p>Share your experiences and moments!</p>
       </div>
       <div className="fill-memory-right">
+        {/* Selected Person Photo Display - Moved to top */}
+        {selectedPersonPhoto && (
+          <div className="selected-person-photo" style={{
+            textAlign: 'center',
+            marginBottom: '2rem',
+            marginLeft:"-2rem",
+            padding: '2rem',
+            backgroundColor: 'transparent'
+          }}>
+          <img 
+              src={selectedPersonPhoto} 
+              alt={`${selectedName}'s photo`}
+              className="responsive-photo"
+              onError={(e) => {
+                e.target.parentElement.style.display = 'none';
+              }}
+          />
+            <h4 style={{ margin: '0', color: '#333', fontSize: '1.1rem', fontWeight: '500' }}>
+              {selectedName}
+            </h4>
+          </div>
+        )}
+
         {error && (
           <div className="error-message" style={{ 
             color: 'red', 

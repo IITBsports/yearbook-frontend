@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './p2.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ const Login = () => {
     <div className='login-page'>
       <div className='welcome-section'>
         <img src='isc-logo.png' alt='ISC Logo' className='logo' />
-        <h1>Welcome to ISC Yearbook 2025!</h1>
+        <h1>Welcome to Sports Yearbook 2025!</h1>
         <div className='carousel'>
           <img src='image1.jpg' alt='Sport 1' />
           <img src='image2.jpg' alt='Sport 2' />
@@ -33,7 +34,10 @@ const Login = () => {
         </div>
       </div>
       <div className='login-section'>
-        <h2>ISC YEARBOOK</h2>
+        <div className='yearbook-header'>
+          <img src='isc-logo.png' alt='ISC Yearbook' className='yearbook-photo' />
+        </div>
+        <h2>SPORTS YEARBOOK</h2>
         <p>UNTIL . VICTORY. ALWAYS</p>
         <form onSubmit={handleLogin}>
           <div className='form-group'>

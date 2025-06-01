@@ -6,7 +6,7 @@ const ResponseSubmitted = () => {
   return (
     <div className="response-submitted-page">
       <div className="response-submitted-left">
-        <h2>ISC YEARBOOK</h2>
+        <h2>Sports YEARBOOK</h2>
         <h3>Thank You!</h3>
         <p>Your response has been submitted successfully.</p>
       </div>

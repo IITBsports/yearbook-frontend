@@ -1,0 +1,33 @@
+.yearbook-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.yearbook-photo {
+  width: 60vw;
+  max-width: 200px;
+  min-width: 120px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .yearbook-photo {
+    width: 50vw;
+    max-width: 150px;
+    min-width: 100px;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 1024px) {
+  .yearbook-photo {
+    width: 15vw;
+    max-width: 250px;
+    min-width: 180px;
+  }
+}
