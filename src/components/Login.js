@@ -35,7 +35,7 @@ const Login = () => {
       </div>
       <div className='login-section'>
         <div className='yearbook-header'>
-          <img src='isc-logo.png' alt='ISC Yearbook' className='yearbook-photo' />
+          <img src='logo-2.png' alt='ISC Yearbook' className='yearbook-photo' />
         </div>
         <h2>SPORTS YEARBOOK</h2>
         <p>UNTIL . VICTORY. ALWAYS</p>
