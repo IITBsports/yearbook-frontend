@@ -8,12 +8,10 @@ const FillMemoryForm = () => {
   const [selectedName, setSelectedName] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState(null);
-  const [video, setVideo] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [photoPreview, setPhotoPreview] = useState(null);
-  const [videoPreview, setVideoPreview] = useState(null);
   const [selectedPersonPhoto, setSelectedPersonPhoto] = useState(null);
   const navigate = useNavigate();
 
@@ -115,31 +113,6 @@ const FillMemoryForm = () => {
     }
   };
 
-  const handleVideoChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Validate file type
-      if (!file.type.startsWith('video/')) {
-        setError('Please select a valid video file.');
-        return;
-      }
-      
-      // Validate file size (100MB limit)
-      if (file.size > 100 * 1024 * 1024) {
-        setError('Video size should be less than 100MB.');
-        return;
-      }
-
-      setVideo(file);
-      
-      // Create preview URL
-      const videoURL = URL.createObjectURL(file);
-      setVideoPreview(videoURL);
-      
-      setError(''); // Clear any previous errors
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -166,9 +139,6 @@ const FillMemoryForm = () => {
     
     if (photo) {
       formData.append('photo', photo);
-    }
-    if (video) {
-      formData.append('video', video);
     }
   
     try {
@@ -204,13 +174,6 @@ const FillMemoryForm = () => {
   };
 
   // Clean up video preview URL to prevent memory leaks
-  useEffect(() => {
-    return () => {
-      if (videoPreview) {
-        URL.revokeObjectURL(videoPreview);
-      }
-    };
-  }, [videoPreview]);
 
   if (submitted) {
     navigate('/response-submitted');
