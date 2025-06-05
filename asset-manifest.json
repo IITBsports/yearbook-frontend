@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/yearbook-frontend/static/css/main.c25916ff.css",
-    "main.js": "/yearbook-frontend/static/js/main.292b693f.js",
+    "main.css": "/yearbook-frontend/static/css/main.29b92f32.css",
+    "main.js": "/yearbook-frontend/static/js/main.df0b9442.js",
     "static/js/453.8ab44547.chunk.js": "/yearbook-frontend/static/js/453.8ab44547.chunk.js",
     "static/media/bg.jpg": "/yearbook-frontend/static/media/bg.0dea1dc81ae3503c64e0.jpg",
     "static/media/bg2.jpg": "/yearbook-frontend/static/media/bg2.0dea1dc81ae3503c64e0.jpg",
     "index.html": "/yearbook-frontend/index.html",
-    "main.c25916ff.css.map": "/yearbook-frontend/static/css/main.c25916ff.css.map",
-    "main.292b693f.js.map": "/yearbook-frontend/static/js/main.292b693f.js.map",
+    "main.29b92f32.css.map": "/yearbook-frontend/static/css/main.29b92f32.css.map",
+    "main.df0b9442.js.map": "/yearbook-frontend/static/js/main.df0b9442.js.map",
     "453.8ab44547.chunk.js.map": "/yearbook-frontend/static/js/453.8ab44547.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c25916ff.css",
-    "static/js/main.292b693f.js"
+    "static/css/main.29b92f32.css",
+    "static/js/main.df0b9442.js"
   ]
 }
