@@ -181,6 +181,10 @@ const Register = () => {
                   placeholder='Create a secure password'
                   required
                 />
+                <div className='password-reminder'>
+                  <span className='reminder-icon'>💡</span>
+                  <span className='reminder-text'>Please save your password for future use</span>
+                </div>
               </div>
               
               <button type='submit' className='register-button'>
@@ -322,6 +326,27 @@ const Register = () => {
           margin-left: 0.5rem;
         }
         
+        .password-reminder {
+          display: flex;
+          align-items: center;
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          background: #fff3cd;
+          border: 1px solid #ffeaa7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        }
+        
+        .reminder-icon {
+          margin-right: 0.5rem;
+          font-size: 1rem;
+        }
+        
+        .reminder-text {
+          color: #856404;
+          font-weight: 500;
+        }
+        
         .additional-options {
           margin-top: 2rem;
           padding-top: 1rem;
@@ -355,6 +380,16 @@ const Register = () => {
           
           .step-content p {
             font-size: 0.65rem;
+          }
+          
+          .password-reminder {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+          }
+          
+          .reminder-icon {
+            margin-right: 0;
           }
         }
       `}</style>
