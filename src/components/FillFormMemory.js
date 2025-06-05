@@ -3,6 +3,290 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './p.css';
 
+// Component to handle photo display with fallback
+const PersonPhotoDisplay = ({ personName, sport }) => {
+  const [currentPhotoUrl, setCurrentPhotoUrl] = useState(null);
+  const [photoUrls, setPhotoUrls] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasValidPhoto, setHasValidPhoto] = useState(false);
+
+  // Generate all possible photo URLs with better matching
+  const generatePhotoUrls = (name, sportName) => {
+    if (!name || !sportName) return [];
+
+    // Map sport names to folder names (handle special cases)
+    const sportToFolderMap = {
+      'Board Games': 'Board Games',
+      'Indian Games': 'Indian Games', 
+      'Lawn Tennis': 'Lawn Tennis',
+      'Table Tennis': 'Table Tennis',
+      'Institute Sports Council':'Council',
+      // Add other mappings if folder names differ from sport names
+    };
+
+    // Get the correct folder name
+    const sportFolder = sportToFolderMap[sportName] || sportName.replace(/\s+/g, '');
+    
+    // Split name into parts
+    const nameParts = name.split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+    
+    // Generate various name combinations
+    const nameVariants = [];
+    
+    // First name variations
+    if (firstName) {
+      nameVariants.push(
+        firstName,
+        firstName.toLowerCase(),
+        firstName.toUpperCase(),
+        firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
+      );
+    }
+    
+    // Full name variations with underscores
+    if (name) {
+      const fullNameUnderscore = name.replace(/\s+/g, '_');
+      nameVariants.push(
+        fullNameUnderscore,
+        fullNameUnderscore.toLowerCase(),
+        fullNameUnderscore.toUpperCase(),
+        // Capitalize each word
+        fullNameUnderscore.split('_').map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ).join('_')
+      );
+    }
+    
+    // Last name variations (if exists)
+    if (lastName) {
+      const lastNameUnderscore = lastName.replace(/\s+/g, '_');
+      nameVariants.push(
+        lastNameUnderscore,
+        lastNameUnderscore.toLowerCase(),
+        lastNameUnderscore.toUpperCase(),
+        lastNameUnderscore.charAt(0).toUpperCase() + lastNameUnderscore.slice(1).toLowerCase()
+      );
+    }
+    
+    // Special handling for names that might have different patterns
+    // Handle names like "Aditya_Goswami" vs "Aditya Pratap Goswami"
+    if (name.includes(' ')) {
+      const compactName = name.replace(/\s+/g, '');
+      nameVariants.push(
+        compactName,
+        compactName.toLowerCase(),
+        compactName.toUpperCase(),
+        compactName.charAt(0).toUpperCase() + compactName.slice(1).toLowerCase()
+      );
+      
+      // Try first and last name only
+      if (nameParts.length > 2) {
+        const firstLast = `${firstName}_${nameParts[nameParts.length - 1]}`;
+        nameVariants.push(
+          firstLast,
+          firstLast.toLowerCase(),
+          firstLast.toUpperCase(),
+          firstLast.split('_').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          ).join('_')
+        );
+      }
+    }
+    
+    // Remove duplicates
+    const uniqueVariants = [...new Set(nameVariants)];
+    
+    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'];
+    
+    const urls = [];
+    for (const nameVar of uniqueVariants) {
+      for (const ext of extensions) {
+        urls.push(`${sportFolder}/${nameVar}.${ext}`);
+      }
+    }
+    
+    // Add some additional common patterns based on the directory structure shown
+    // Sometimes names might be stored differently
+    const additionalPatterns = [];
+    
+    // Pattern: FirstName_LastName format
+    if (nameParts.length >= 2) {
+      const patterns = [
+        `${firstName}_${nameParts[nameParts.length - 1]}`,
+        `${firstName.toLowerCase()}_${nameParts[nameParts.length - 1].toLowerCase()}`,
+        `${firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()}_${nameParts[nameParts.length - 1].charAt(0).toUpperCase() + nameParts[nameParts.length - 1].slice(1).toLowerCase()}`
+      ];
+      
+      patterns.forEach(pattern => {
+        extensions.forEach(ext => {
+          additionalPatterns.push(`${sportFolder}/${pattern}.${ext}`);
+        });
+      });
+    }
+    
+    return [...urls, ...additionalPatterns];
+  };
+
+  useEffect(() => {
+    if (personName && sport) {
+      const urls = generatePhotoUrls(personName, sport);
+      setPhotoUrls(urls);
+      setCurrentIndex(0);
+      setIsLoading(true);
+      setHasValidPhoto(false);
+      
+      console.log('Generated photo URLs for', personName, ':', urls); // Debug log
+      
+      if (urls.length > 0) {
+        setCurrentPhotoUrl(urls[0]);
+      } else {
+        setCurrentPhotoUrl(null);
+        setIsLoading(false);
+      }
+    } else {
+      setCurrentPhotoUrl(null);
+      setPhotoUrls([]);
+      setIsLoading(false);
+      setHasValidPhoto(false);
+    }
+  }, [personName, sport]);
+
+  const handleImageError = () => {
+    console.log('Failed to load:', currentPhotoUrl); // Debug log
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < photoUrls.length) {
+      setCurrentIndex(nextIndex);
+      setCurrentPhotoUrl(photoUrls[nextIndex]);
+    } else {
+      // No more URLs to try
+      setCurrentPhotoUrl(null);
+      setIsLoading(false);
+      setHasValidPhoto(false);
+    }
+  };
+
+  const handleImageLoad = () => {
+    console.log('Successfully loaded:', currentPhotoUrl); // Debug log
+    setIsLoading(false);
+    setHasValidPhoto(true);
+  };
+
+  if (!personName || !sport) {
+    return null;
+  }
+
+  if (isLoading && currentPhotoUrl) {
+    return (
+      <div className="selected-person-photo" style={{
+        textAlign: 'center',
+        marginBottom: '2rem',
+        marginLeft: "-2rem",
+        padding: '2rem',
+        backgroundColor: 'transparent'
+      }}>
+        <div style={{ 
+          width: '200px', 
+          height: '200px', 
+          backgroundColor: '#f0f0f0', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          borderRadius: '8px',
+          margin: '0 auto'
+        }}>
+          Loading photo...
+        </div>
+        <h4 style={{ 
+          margin: '10px 0 0 0', 
+          color: '#333', 
+          fontSize: '1.1rem', 
+          fontWeight: '500' 
+        }}>
+          {personName}
+        </h4>
+        <img 
+          src={currentPhotoUrl} 
+          alt={`${personName}'s photo`}
+          onError={handleImageError}
+          onLoad={handleImageLoad}
+          style={{ display: 'none' }}
+        />
+      </div>
+    );
+  }
+
+  if (!currentPhotoUrl || !hasValidPhoto) {
+    return (
+      <div className="selected-person-photo" style={{
+        textAlign: 'center',
+        marginBottom: '2rem',
+        marginLeft: "-2rem",
+        padding: '2rem',
+        backgroundColor: 'transparent'
+      }}>
+        <div style={{ 
+          width: '200px', 
+          height: '200px', 
+          backgroundColor: '#f0f0f0', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          borderRadius: '8px',
+          margin: '0 auto',
+          color: '#666',
+          fontSize: '14px'
+        }}>
+          No photo available
+        </div>
+        <h4 style={{ 
+          margin: '10px 0 0 0', 
+          color: '#333', 
+          fontSize: '1.1rem', 
+          fontWeight: '500' 
+        }}>
+          {personName}
+        </h4>
+      </div>
+    );
+  }
+
+  return (
+    <div className="selected-person-photo" style={{
+      textAlign: 'center',
+      marginBottom: '2rem',
+      marginLeft: "-2rem",
+      padding: '2rem',
+      backgroundColor: 'transparent'
+    }}>
+      <img 
+        src={currentPhotoUrl} 
+        alt={`${personName}'s photo`}
+        className="responsive-photo"
+        onError={handleImageError}
+        onLoad={handleImageLoad}
+        style={{
+          maxWidth: '200px',
+          maxHeight: '200px',
+          objectFit: 'cover',
+          borderRadius: '8px',
+          border: '2px solid #ddd'
+        }}
+      />
+      <h4 style={{ 
+        margin: '10px 0 0 0', 
+        color: '#333', 
+        fontSize: '1.1rem', 
+        fontWeight: '500' 
+      }}>
+        {personName}
+      </h4>
+    </div>
+  );
+};
+
 const FillMemoryForm = () => {
   const [selectedSport, setSelectedSport] = useState('');
   const [selectedName, setSelectedName] = useState('');
@@ -12,7 +296,6 @@ const FillMemoryForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [photoPreview, setPhotoPreview] = useState(null);
-  const [selectedPersonPhoto, setSelectedPersonPhoto] = useState(null);
   const navigate = useNavigate();
 
   // Get user data safely
@@ -37,50 +320,70 @@ const FillMemoryForm = () => {
   }, []);
 
   const sportsPlayers = {
-    'Institute Sports Council': ['Anshul Panwar', 'Himanshu M Singhal', 'Riddhima Channa', 'Arpan Adak', 'Angoth Sai Vidhya', 'Anuj Partani', 'Aryan Aswani', 'Adithyan Rajesh', 'Sakshi Patil', 'Parth Dange', 'Goransh Gattani', 'Mukul Raj', 'Aum Jain', 'Sahil Kumar', 'Satyajeet Machale','Adwait Patwardhan','Param Shah','Snehal Naik','Harsshh Wankhayday','Tushnim Yuvaraj','Subh Verma','Srishti Sharma','Mrunal Lalwani','Atishay Jain','Palak Katiyar','Nandini Chandak','Uditi Malviya','Kaivaly Daga','Ayush Parmar','Kosika Bhanu Prakash','Akhilesh Narayan','Gourav Dhaka','Shubham Sharma','Almaas Ummu Salma','Aditya Wankhade','Pratham Sanghvi','Dhairya Jhunjhunwala'],
-    Aquatics: ['Madhav Joshi', 'Mansi Khedekar', 'Onam Tamir', 'Aarushi','Preety','Vineet','Abinash','Rishabh','Palak Katiyar','Ritam Barai'],
-    Athletics: ['Kapil Bhagat', 'Mayur Morey','Almaas Ummu Salma', 'Dhairya Jhunjhunwala', 'Angoth Sai Vidhya'],
-    Badminton: ['Rupansh Parth','Lokesh Soni','Aanya Verma','Shardul','Darsh Yadav','Akshay Padakanti','Anuj Partani','Jathin','Dyuneesh','Soham','Parshant','Gaurav Dhaka','Aditya Wankhade'],
-    Basketball: ['Varun Raipat','Atishay Jain','Aryan Aswani' ,'Mehul Vijay Chanda','Girish Kishore' ,'Sreetam Tripathi','Uditi Malviya','Shruti Singh','Sai Krishna','Mudit Goyal','Bitthal Parida','Aum Jain','Priyanshu Niranjan','Raghav Singhal' ],
-    BoardGames: ['Shreyam Mishra', 'Siddhesh Yeram','Harsshh Wankhayday','Mrunal Lalwani','Himanshu M Singhal','Manav Gada','Rajvi'],
-    Cricket: ['Prashant Jaiswal','Harsh Sapkale','Praharsh Shah','Yashas P R','Kunal Shahdeo','Ashutosh Kumar','Prathmesh Nachankar ','Siddhant Kalel','Bhagat ','Sanket Ambre ','Ayush Parmar','Adhityan','Adwait Patwardhan','Shubh Verma','Divyansh Shukla','Bitthal','Aditya Wankhede','Upendra'],
-    Football: ['Manav Doshi', 'Kaustubh Chaurasia','Akhilesh ','Mokshit','Oshim','Adhi saran','Jatin Chaudhary','Shivanshu Kalia','Onam Tamir','Subhojit','Pushpak','Babu','Pratham Sanghvi','Sarjam Tudu','Karan Bayad','Sahil Kumar','Subhojit','Suvatman Dhar','Tushmin','Yash Singh'],
-    Hockey: ['Chaitanya Ramprasad', 'Shubham Shaw','John Paul','Ankit Rathee','Ayush Patil','Nandini Chandak','Anshul Panwar','Kartikeya Chandra','Anmol','Kuldeep Sharma','Dheeraj'],
-    IndianGames: ['Ashok','Param','Balbir','Chandmal','Kishore','Vinankara','Kiran','Rohinee','Sarika','Sravani','Himani','Snehal','Shubham Sharma'],
-    LawnTennis: ['Shubham Shaw', 'Sahil Kumar','Prateek Jha','Aryan Thakur','Shubh Verma'],
-    Sqaush: ['Aneesh Kamat', 'Ruhaan','Rati ','Namrata','Siddhant','Ayush Parmar'],
-    TableTennis: ['Riddhima Channa', 'Rishi','Saurabh ','Mitali','Shantanu','Priyam','Kaivaly Daga'],
-    Volleyball: ['Nishant', 'Abhigyan', 'Prakhar', 'Siva', 'kumar', 'Anil', 'Kiran', 'Sandeep','Sakshi', 'Pragati', 'Prerna', 'Jigmat', 'Surbhi', 'Garima', 'Navya', 'Mahek', 'Shristi', 'Riyali'],
-    Weightlifting: ['Amit Meena','Kosika Bhanu Prakash','Almaas Ummu Salma A A','Adithyan Rajesh'],
-    'Ultimate Frisbee':['Arti Kumar','Kapil Dedhia','Ishika Saini','Almaas Ummu Salma','Suraj Kumar','Karthickeyan V','Kuldeep Sankhat','Harshvardhan Ahirwar','Rujul Bhosale','Shruti Saraf','Dinesh Bomma','Arjun Sadananda','Sakthivel M','Utkarsh Tripathi','Vaibhav Verma','Chhavi','Pranav Adhyapak','Aswin Srivastava','Pooja Verma','Soumya Kedia'],
-  };
-
-  // Function to get person's photo URL based on their name
-  const getPersonPhotoUrl = (personName) => {
-    if (!personName) return null;
-    // Convert name to a format suitable for filename
-    // Replace spaces with underscores and convert to lowercase
-    const fileName = personName.toLowerCase().replace(/\s+/g, '_');
-    return `photos/${fileName}.jpg`; // Assuming photos are stored in a 'photos' folder with .jpg extension
+    Aquatics: [
+      // Add your aquatics players here
+    ],
+    Athletics: [
+      // Add your athletics players here
+    ],
+    Badminton: [
+      "Gopal Maheshwari", "Tanay Tayal", "Soumya Mandal", "Ayush Narwal", "Aditya Pratap Goswami",
+      "Sanika", "Shainal Jain", "Srinithya", "Tejal Sharan", "Jathin Sai Ganesh", "Lokesh Soni"
+    ],
+    Basketball: [
+      // Add your basketball players here
+    ],
+    "Board Games": [
+      "Jatin Deshpande", "Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
+      "Arham Jain", "Nitish Bhat"
+    ],
+    "Institute Sports Council": [
+      "Siddharth Farkiya", "Rituraj Choudhary", "Pratham Chandra", "Srajan Jain"
+    ],
+    Cricket: [
+      "Ashwin Kumar", "Himanshu Raj", "Bhawesh Chhajed", "Eswar", "Sayan", "Pratham Kulkarni",
+      "Harshvardhan Chouhan", "Saransh", "Utkarsh Patidar", "Kandarp Solanki", "Nachiket",
+      "Aakash Verma", "Soham", "Satya"
+    ],
+    Football: [
+      "Dhritiman Sriram", "Arya Agarwal", "Sahil Zodge", "Ishaan Kothari", "Ayush Dhole",
+      "Suyash Bhandare", "Aditya Kumar", "Siddharth Kaushik", "Sridhar Sahu", "Harshraj Chaudhri",
+      "Himank Gupta", "Rubul Gogoi", "Johan Julio"
+    ],
+    Hockey: [
+      // Add your hockey players here
+    ],
+    "Indian Games": [
+      "Kamlesh Mali", "Ajit Pal Singh", "Abhishek Madike", "Abhishek Kushwah", "Pooja",
+      "Samiksha Yadav", "Shreyas Lipare", "Isha Dev", "Sanjyot Bhure", "Korimi Vennela",
+      "Naveen Depavath", "Ganesh", "Sai Deepthi", "Aryan Chourasia", "Jaswanthi Masada",
+      "Sri Nithya Soupati", "Eswar", "Nikita Kanwar", "Prashasti Abojwar", "Tejashwini Palithya",
+      "Bhuvan", "Siddarth"
+    ],
+    Hockey: ["Aayush","Alok","Diljit","Harsh","Karan","Nikhil","Shani","Shrikant","Utkarsh","Varun"],
+    "Lawn Tennis": [
+      "Aryan Chourasia", "Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
+      "Arunjoy", "Himanshu"
+    ],
+    Squash: ["Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
+    "Table Tennis": [
+      "Kanishk Garg", "Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
+    ],
+    Volleyball: [
+      "Srajan Jain", "Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
+      "Kunj Patel", "Akhilesh Prasad", "Dhurba Hazarika", "Sushmita Negi"
+    ],
+    Weightlifting: ["Loveneesh Lawaniya", "Sourabh Chouhan", "Faheem Yoonus", "Priya Singh"]
   };
 
   const handleSportChange = (e) => {
     setSelectedSport(e.target.value);
     setSelectedName('');  // Reset selected name when sport changes
-    setSelectedPersonPhoto(null); // Reset person photo when sport changes
   };
 
   const handleNameChange = (e) => {
     const selectedPersonName = e.target.value;
     setSelectedName(selectedPersonName);
-    
-    // Set the selected person's photo
-    if (selectedPersonName) {
-      const photoUrl = getPersonPhotoUrl(selectedPersonName);
-      setSelectedPersonPhoto(photoUrl);
-    } else {
-      setSelectedPersonPhoto(null);
-    }
   };
 
   const handleDescriptionChange = (e) => {
@@ -173,8 +476,6 @@ const FillMemoryForm = () => {
     }
   };
 
-  // Clean up video preview URL to prevent memory leaks
-
   if (submitted) {
     navigate('/response-submitted');
     return null;
@@ -189,28 +490,11 @@ const FillMemoryForm = () => {
         <p>Share your experiences and moments!</p>
       </div>
       <div className="fill-memory-right">
-        {/* Selected Person Photo Display - Moved to top */}
-        {selectedPersonPhoto && (
-          <div className="selected-person-photo" style={{
-            textAlign: 'center',
-            marginBottom: '2rem',
-            marginLeft:"-2rem",
-            padding: '2rem',
-            backgroundColor: 'transparent'
-          }}>
-          <img 
-              src={selectedPersonPhoto} 
-              alt={`${selectedName}'s photo`}
-              className="responsive-photo"
-              onError={(e) => {
-                e.target.parentElement.style.display = 'none';
-              }}
-          />
-            <h4 style={{ margin: '0', color: '#333', fontSize: '1.1rem', fontWeight: '500' }}>
-              {selectedName}
-            </h4>
-          </div>
-        )}
+        {/* Selected Person Photo Display */}
+        <PersonPhotoDisplay 
+          personName={selectedName} 
+          sport={selectedSport}
+        />
 
         {error && (
           <div className="error-message" style={{ 
@@ -274,7 +558,7 @@ const FillMemoryForm = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="photo">Add Photo: (Max 20MB)</label>
+            <label htmlFor="photo">Add Photo: (Max 50MB)</label>
             <input 
               type="file" 
               id="photo" 
