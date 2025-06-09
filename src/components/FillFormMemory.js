@@ -320,6 +320,10 @@ const FillMemoryForm = () => {
   }, []);
 
   const sportsPlayers = {
+    "Institute Sports Council": [
+      "Siddharth Farkiya","Kanishk Garg","Akanksha_Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya"
+    ],
     Aquatics: [
       // Add your aquatics players here
     ],
@@ -331,14 +335,12 @@ const FillMemoryForm = () => {
       "Sanika", "Shainal Jain", "Srinithya", "Tejal Sharan", "Jathin Sai Ganesh", "Lokesh Soni"
     ],
     Basketball: [
-      // Add your basketball players here
+    "Aabir","Ajay_Raj", "Akanksha_Jain","Alfia_Zareen_Khan","Nidhi_Pandey","Prasanth","Rohit_Auti", "Shrunoti",
+    "Sudeshna_Dhar","Yaamesh"
     ],
     "Board Games": [
-      "Jatin Deshpande", "Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
+      "Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
       "Arham Jain", "Nitish Bhat"
-    ],
-    "Institute Sports Council": [
-      "Siddharth Farkiya", "Rituraj Choudhary", "Pratham Chandra", "Srajan Jain"
     ],
     Cricket: [
       "Ashwin Kumar", "Himanshu Raj", "Bhawesh Chhajed", "Eswar", "Sayan", "Pratham Kulkarni",
@@ -346,28 +348,25 @@ const FillMemoryForm = () => {
       "Aakash Verma", "Soham", "Satya"
     ],
     Football: [
-      "Dhritiman Sriram", "Arya Agarwal", "Sahil Zodge", "Ishaan Kothari", "Ayush Dhole",
+      "Dhritiman Sriram", "Arya Agarwal", "Sahil Zodge",
       "Suyash Bhandare", "Aditya Kumar", "Siddharth Kaushik", "Sridhar Sahu", "Harshraj Chaudhri",
       "Himank Gupta", "Rubul Gogoi", "Johan Julio"
     ],
-    Hockey: [
-      // Add your hockey players here
-    ],
+    Hockey: ["Aayush","Alok","Diljit","Harsh","Nikhil","Shani","Shrikant","Utkarsh","Varun"],
     "Indian Games": [
-      "Kamlesh Mali", "Ajit Pal Singh", "Abhishek Madike", "Abhishek Kushwah", "Pooja",
+      "Kamlesh Mali", "Abhishek Madike", "Abhishek Kushwah", "Pooja",
       "Samiksha Yadav", "Shreyas Lipare", "Isha Dev", "Sanjyot Bhure", "Korimi Vennela",
       "Naveen Depavath", "Ganesh", "Sai Deepthi", "Aryan Chourasia", "Jaswanthi Masada",
       "Sri Nithya Soupati", "Eswar", "Nikita Kanwar", "Prashasti Abojwar", "Tejashwini Palithya",
       "Bhuvan", "Siddarth"
     ],
-    Hockey: ["Aayush","Alok","Diljit","Harsh","Karan","Nikhil","Shani","Shrikant","Utkarsh","Varun"],
     "Lawn Tennis": [
       "Aryan Chourasia", "Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
       "Arunjoy", "Himanshu"
     ],
     Squash: ["Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
     "Table Tennis": [
-      "Kanishk Garg", "Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
+      "Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
     ],
     Volleyball: [
       "Srajan Jain", "Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
