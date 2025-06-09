@@ -320,15 +320,18 @@ const FillMemoryForm = () => {
   const sportsPlayers = {
     "Institute Sports Council": [
       "Siddharth Farkiya","Kanishk Garg","Akanksha_Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
-      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam"
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal",
     ],
     Aquatics: [
       "Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav"
     ],
 
     Athletics: [
-      // Add your athletics players here
-    ],
+  "Annie D Souza", "Dhruv Sorathiya", "Kanad", "Lakshay Bhadana",
+  "Nitin Kumar", "Rangaswamy","Samiksha Yadav",
+  "Shashank Joshi", "Tejas Bhosale"
+  ],
+
     Badminton: [
       "Gopal Maheshwari", "Tanay Tayal", "Soumya Mandal", "Ayush Narwal", "Aditya Pratap Goswami",
       "Sanika", "Shainal Jain", "Srinithya", "Tejal Sharan", "Jathin Sai Ganesh", "Lokesh Soni"
