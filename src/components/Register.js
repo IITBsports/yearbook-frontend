@@ -88,7 +88,6 @@ const Register = () => {
       </div>
       
       <div className='register-section'>
-        <h2>Register</h2>
         
         {/* Registration Steps Guide */}
         <div className='registration-steps'>
@@ -215,13 +214,14 @@ const Register = () => {
           background: #f8f9fa;
           border-radius: 6px;
           border: 1px solid #e9ecef;
+          font-size:0.7rem;
         }
         
         .registration-steps h3 {
           margin-top: 0;
           margin-bottom: 0.4rem;
           color: #333;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           font-weight: 600;
         }
         
@@ -286,12 +286,10 @@ const Register = () => {
         
         .step-content h4 {
           margin: 0 0 0.5rem 0;
-          font-size: 1rem;
         }
         
         .step-content p {
           margin: 0;
-          font-size: 0.9rem;
           color: #666;
         }
         
@@ -302,6 +300,7 @@ const Register = () => {
           border: 1px solid #ddd;
           border-radius: 6px;
           background: white;
+          font-size:0.8rem;
         }
         
         .verification-section h4,
@@ -348,8 +347,6 @@ const Register = () => {
         }
         
         .additional-options {
-          margin-top: 2rem;
-          padding-top: 1rem;
           border-top: 1px solid #eee;
           text-align: center;
         }
@@ -362,6 +359,7 @@ const Register = () => {
           .registration-steps {
             margin: 0.5rem 0;
             padding: 0.4rem;
+            font-size:0.8rem;
           }
           
           .step {
@@ -375,11 +373,11 @@ const Register = () => {
           }
           
           .step-content h4 {
-            font-size: 0.75rem;
+            font-size: 0.55rem;
           }
           
           .step-content p {
-            font-size: 0.65rem;
+            font-size: 0.45rem;
           }
           
           .password-reminder {
@@ -390,7 +388,33 @@ const Register = () => {
           
           .reminder-icon {
             margin-right: 0;
-          }
+          }  
+        
+        .details-section {
+          margin: 0.5rem 0;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: white;
+          font-size:0.6rem;
+        }
+        
+        }
+        @media (max-width: 400px) {
+        .verification-section,
+        .details-section {
+          margin: 0.5rem 0;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: white;
+          font-size:0.7rem
+        }
+        .reminder-text {
+          color: #856404;
+          font-weight: 500;
+          font-size:0.4rem;
+        }
         }
       `}</style>
     </div>

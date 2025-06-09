@@ -11,14 +11,22 @@
 
 @media (max-width: 768px) {
   .responsive-photo {
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
   }
 }
 
+@media (max-width: 950px) {
+  .responsive-photo {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+
 @media (max-width: 480px) {
   .responsive-photo {
-    width: 5rem;
-    height: 5rem;
+    width: 8rem;
+    height: 8rem;
   }
 }

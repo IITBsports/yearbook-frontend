@@ -22,6 +22,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
       'Lawn Tennis': 'Lawn Tennis',
       'Table Tennis': 'Table Tennis',
       'Institute Sports Council':'Council',
+      'Ultimate Frisbee':'Frisbee'
       // Add other mappings if folder names differ from sport names
     };
 
@@ -182,9 +183,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
     return (
       <div className="selected-person-photo" style={{
         textAlign: 'center',
-        marginBottom: '2rem',
         marginLeft: "-2rem",
-        padding: '2rem',
         backgroundColor: 'transparent'
       }}>
         <div style={{ 
@@ -223,8 +222,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
       <div className="selected-person-photo" style={{
         textAlign: 'center',
         marginBottom: '2rem',
-        marginLeft: "-2rem",
-        padding: '2rem',
+        padding:'0.5rem',
         backgroundColor: 'transparent'
       }}>
         <div style={{ 
@@ -258,7 +256,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
       textAlign: 'center',
       marginBottom: '2rem',
       marginLeft: "-2rem",
-      padding: '2rem',
+      padding: '1rem',
       backgroundColor: 'transparent'
     }}>
       <img 
@@ -322,11 +320,12 @@ const FillMemoryForm = () => {
   const sportsPlayers = {
     "Institute Sports Council": [
       "Siddharth Farkiya","Kanishk Garg","Akanksha_Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
-      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya"
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam"
     ],
     Aquatics: [
-      // Add your aquatics players here
+      "Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav"
     ],
+
     Athletics: [
       // Add your athletics players here
     ],
@@ -361,7 +360,7 @@ const FillMemoryForm = () => {
       "Bhuvan", "Siddarth"
     ],
     "Lawn Tennis": [
-      "Aryan Chourasia", "Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
+      "Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
       "Arunjoy", "Himanshu"
     ],
     Squash: ["Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
@@ -369,10 +368,12 @@ const FillMemoryForm = () => {
       "Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
     ],
     Volleyball: [
-      "Srajan Jain", "Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
+      "Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
       "Kunj Patel", "Akhilesh Prasad", "Dhurba Hazarika", "Sushmita Negi"
     ],
-    Weightlifting: ["Loveneesh Lawaniya", "Sourabh Chouhan", "Faheem Yoonus", "Priya Singh"]
+    Weightlifting: ["Loveneesh Lawaniya", "Sourabh Chouhan", "Faheem Yoonus", "Priya Singh"],
+    "Ultimate Frisbee": ["Ayush Vanmore", "Deepak Solanki", "Faheem M Yoonus", "Kaushikraj", "Ketan Sakalkale", "Mayur", "Prem Kant", "Tanay Tayal", "Vighnu"]
+
   };
 
   const handleSportChange = (e) => {
