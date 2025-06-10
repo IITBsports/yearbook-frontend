@@ -266,8 +266,8 @@ const FillMemoryForm = () => {
       "Sanika", "Shainal Jain", "Srinithya", "Tejal Sharan", "Jathin Sai Ganesh", "Lokesh Soni"
     ],
     Basketball: [
-    "Aabir","Ajay_Raj", "Akanksha_Jain","Alfia_Zareen_Khan","Nidhi_Pandey","Prasanth","Rohit_Auti", "Shrunoti",
-    "Sudeshna_Dhar","Yaamesh"
+    "Aabir","Ajay Raj", "Akanksha Jain","Alfia Zareen Khan","Nidhi Pandey","Prasanth","Rohit Auti", "Shrunoti",
+    "Sudeshna Dhar","Yaamesh"
     ],
     "Board Games": [
       "Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
