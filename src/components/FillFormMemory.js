@@ -248,7 +248,7 @@ const FillMemoryForm = () => {
 
   const sportsPlayers = {
     "Institute Sports Council": [
-      "Siddharth Farkiya","Kanishk Garg","Akanksha_Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
+      "Siddharth Farkiya","Kanishk Garg","Akanksha Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
       "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal",
     ],
     Aquatics: [
