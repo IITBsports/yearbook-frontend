@@ -8,8 +8,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
   const [showResetSection, setShowResetSection] = useState(false);
-  const [resetStep, setResetStep] = useState(1); // 1: email verification, 2: token verification, 3: password reset
+  const [resetStep, setResetStep] = useState(1);
   const [resetEmail, setResetEmail] = useState('');
   const [resetToken, setResetToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -59,14 +60,17 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
+    setError(''); // Clear any previous errors
+    
     try {
       const response = await axios.post('https://yearbook-website-1.onrender.com/api/login', { email, password });
-      setError('');
       // Store user data in local storage
       localStorage.setItem('userData', JSON.stringify(response.data));
       navigate('/home');
     } catch (error) {
       setError('Invalid email or password');
+      setIsLoading(false); // Stop loading on error
     }
   };
 
@@ -180,6 +184,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                disabled={isLoading} // Disable input while loading
               />
             </div>
             <div className='form-group'>
@@ -190,15 +195,37 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={isLoading} // Disable input while loading
               />
             </div>
             {error && <p className='error'>{error}</p>}
             {success && <p className='success'>{success}</p>}
-            <button type='submit' className='login-button'>Login</button>
-            <button type='button' onClick={() => navigate('/register')} className='register-button'>
+            
+            <button type='submit' className='login-button' disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <div className='spinner'></div>
+                  Logging in...
+                </>
+              ) : (
+                'Login'
+              )}
+            </button>
+            
+            <button 
+              type='button' 
+              onClick={() => navigate('/register')} 
+              className='register-button'
+              disabled={isLoading} // Disable other buttons while loading
+            >
               New? Register Here
             </button>
-            <button type='button' onClick={handleShowResetSection} className='reset-button'>
+            <button 
+              type='button' 
+              onClick={handleShowResetSection} 
+              className='reset-button'
+              disabled={isLoading} // Disable other buttons while loading
+            >
               Reset Password
             </button>
           </form>
@@ -300,43 +327,6 @@ const Login = () => {
         )}
       </div>
     </div>
-
-    // <div className='login-register'>
-    //   <div class="stylish box-01">
-	  //       <h2 class="effect-01">Yearbook</h2>
-    //       <div className="eleven"><h1>IIT Bombay Sports Yearbook 2024</h1></div>
-    //   </div>
-    //   <div className="login-container">
-    //     <h2>Login</h2>
-    //     <form onSubmit={handleLogin}>
-    //       <div className="form-group">
-    //         <label htmlFor="email">Email:</label>
-    //         <input
-    //           type="email"
-    //           id="email"
-    //           value={email}
-    //           onChange={(e) => setEmail(e.target.value)}
-    //           required
-    //         />
-    //       </div>
-    //       <div className="form-group">
-    //         <label htmlFor="password">Password:</label>
-    //         <input
-    //           type="password"
-    //           id="password"
-    //           value={password}
-    //           onChange={(e) => setPassword(e.target.value)}
-    //           required
-    //         />
-    //       </div>
-    //       {error && <p className="error">{error}</p>}
-    //       <button type="submit">Login</button>
-    //     </form>
-    //     <button onClick={() => navigate('/register')}>
-    //       New? Register Here
-    //     </button>
-    //   </div>
-    // </div>
   );
 };
 

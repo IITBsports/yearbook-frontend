@@ -30,3 +30,40 @@
     min-width: 180px;
   }
 }
+/* Loading Spinner Styles */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Login button with loading state */
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Disable other buttons during loading */
+.register-button:disabled,
+.reset-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
