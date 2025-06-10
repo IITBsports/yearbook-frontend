@@ -11,124 +11,53 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasValidPhoto, setHasValidPhoto] = useState(false);
 
-  // Generate all possible photo URLs with better matching
+  // Optimized photo URL generation - only essential variations
   const generatePhotoUrls = (name, sportName) => {
     if (!name || !sportName) return [];
 
-    // Map sport names to folder names (handle special cases)
+    // Map sport names to folder names
     const sportToFolderMap = {
       'Board Games': 'Board Games',
       'Indian Games': 'Indian Games', 
       'Lawn Tennis': 'Lawn Tennis',
       'Table Tennis': 'Table Tennis',
-      'Institute Sports Council':'Council',
-      'Ultimate Frisbee':'Frisbee'
-      // Add other mappings if folder names differ from sport names
+      'Institute Sports Council': 'Council',
+      'Ultimate Frisbee': 'Frisbee'
     };
 
-    // Get the correct folder name
     const sportFolder = sportToFolderMap[sportName] || sportName.replace(/\s+/g, '');
+    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'PNG'];
     
-    // Split name into parts
-    const nameParts = name.split(' ');
-    const firstName = nameParts[0];
-    const lastName = nameParts.slice(1).join(' ');
-    
-    // Generate various name combinations
+    // Only generate the most likely name variations
     const nameVariants = [];
     
-    // First name variations
-    if (firstName) {
-      nameVariants.push(
-        firstName,
-        firstName.toLowerCase(),
-        firstName.toUpperCase(),
-        firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
-      );
+    // 1. Exact name with underscores (most common pattern)
+    const nameWithUnderscore = name.replace(/\s+/g, '_');
+    nameVariants.push(nameWithUnderscore);
+    
+    // 2. First name only (common for single names)
+    const firstName = name.split(' ')[0];
+    if (firstName !== nameWithUnderscore) {
+      nameVariants.push(firstName);
     }
     
-    // Full name variations with underscores
-    if (name) {
-      const fullNameUnderscore = name.replace(/\s+/g, '_');
-      nameVariants.push(
-        fullNameUnderscore,
-        fullNameUnderscore.toLowerCase(),
-        fullNameUnderscore.toUpperCase(),
-        // Capitalize each word
-        fullNameUnderscore.split('_').map(word => 
-          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-        ).join('_')
-      );
+    // 3. Capitalize first letter of each word pattern
+    const capitalizedName = name.split(' ').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    ).join('_');
+    if (capitalizedName !== nameWithUnderscore) {
+      nameVariants.push(capitalizedName);
     }
-    
-    // Last name variations (if exists)
-    if (lastName) {
-      const lastNameUnderscore = lastName.replace(/\s+/g, '_');
-      nameVariants.push(
-        lastNameUnderscore,
-        lastNameUnderscore.toLowerCase(),
-        lastNameUnderscore.toUpperCase(),
-        lastNameUnderscore.charAt(0).toUpperCase() + lastNameUnderscore.slice(1).toLowerCase()
-      );
-    }
-    
-    // Special handling for names that might have different patterns
-    // Handle names like "Aditya_Goswami" vs "Aditya Pratap Goswami"
-    if (name.includes(' ')) {
-      const compactName = name.replace(/\s+/g, '');
-      nameVariants.push(
-        compactName,
-        compactName.toLowerCase(),
-        compactName.toUpperCase(),
-        compactName.charAt(0).toUpperCase() + compactName.slice(1).toLowerCase()
-      );
-      
-      // Try first and last name only
-      if (nameParts.length > 2) {
-        const firstLast = `${firstName}_${nameParts[nameParts.length - 1]}`;
-        nameVariants.push(
-          firstLast,
-          firstLast.toLowerCase(),
-          firstLast.toUpperCase(),
-          firstLast.split('_').map(word => 
-            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-          ).join('_')
-        );
-      }
-    }
-    
-    // Remove duplicates
-    const uniqueVariants = [...new Set(nameVariants)];
-    
-    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'];
-    
+
+    // Generate URLs for all combinations
     const urls = [];
-    for (const nameVar of uniqueVariants) {
+    for (const nameVar of nameVariants) {
       for (const ext of extensions) {
         urls.push(`${sportFolder}/${nameVar}.${ext}`);
       }
     }
     
-    // Add some additional common patterns based on the directory structure shown
-    // Sometimes names might be stored differently
-    const additionalPatterns = [];
-    
-    // Pattern: FirstName_LastName format
-    if (nameParts.length >= 2) {
-      const patterns = [
-        `${firstName}_${nameParts[nameParts.length - 1]}`,
-        `${firstName.toLowerCase()}_${nameParts[nameParts.length - 1].toLowerCase()}`,
-        `${firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()}_${nameParts[nameParts.length - 1].charAt(0).toUpperCase() + nameParts[nameParts.length - 1].slice(1).toLowerCase()}`
-      ];
-      
-      patterns.forEach(pattern => {
-        extensions.forEach(ext => {
-          additionalPatterns.push(`${sportFolder}/${pattern}.${ext}`);
-        });
-      });
-    }
-    
-    return [...urls, ...additionalPatterns];
+    return urls;
   };
 
   useEffect(() => {
