@@ -112,7 +112,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
     return (
       <div className="selected-person-photo" style={{
         textAlign: 'center',
-        marginLeft: "-2rem",
+        marginLeft: "-1rem",
         backgroundColor: 'transparent'
       }}>
         <div style={{ 
@@ -184,7 +184,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
     <div className="selected-person-photo" style={{
       textAlign: 'center',
       marginBottom: '2rem',
-      marginLeft: "-2rem",
+      marginLeft: "-1rem",
       padding: '1rem',
       backgroundColor: 'transparent'
     }}>
