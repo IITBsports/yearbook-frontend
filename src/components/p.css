@@ -18,15 +18,21 @@
 
 @media (max-width: 950px) {
   .responsive-photo {
-    width: 10rem;
-    height: 10rem;
+    width: 18rem;
+    height: 18rem;
   }
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 550px) {
   .responsive-photo {
-    width: 8rem;
-    height: 8rem;
+    width: 14rem;
+    height: 14rem;
+  }
+}
+@media (max-width: 380px) {
+  .responsive-photo {
+    width: 10rem;
+    height: 9rem;
   }
 }
