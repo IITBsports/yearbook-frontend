@@ -64,7 +64,7 @@ const Login = () => {
     setError(''); // Clear any previous errors
     
     try {
-      const response = await axios.post('https://yearbook-website-1.onrender.com/api/login', { email, password });
+      const response = await axios.post('https://yearbookbackend1-7yxtcfzu.b4a.run/api/login', { email, password });
       // Store user data in local storage
       localStorage.setItem('userData', JSON.stringify(response.data));
       navigate('/home');
@@ -88,7 +88,7 @@ const Login = () => {
 
   const handleForgotPassword = async (email) => {
     try {
-      const response = await axios.post('https://yearbook-website-1.onrender.com/api/forgot-password', { 
+      const response = await axios.post('https://yearbookbackend1-7yxtcfzu.b4a.run/api/forgot-password', { 
         email: email || resetEmail 
       });
       setResetToken(response.data.resetToken);
@@ -116,7 +116,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('https://yearbook-website-1.onrender.com/api/reset-password', {
+      const response = await axios.post('https://yearbookbackend1-7yxtcfzu.b4a.run/api/reset-password', {
         email: resetEmail,
         resetToken: resetToken,
         newPassword: newPassword

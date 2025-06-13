@@ -47,7 +47,7 @@ const AlumniRegister = () => {
     console.log('Email:', email);
     try {
       console.log('Sending request to server');
-      const response = await axios.post('https://yearbook-website-1.onrender.com/api/register', { name, email, password });
+      const response = await axios.post('https://yearbookbackend1-7yxtcfzu.b4a.run/api/register', { name, email, password });
       setSuccess(response.data.message);
       setError('');
       // Redirect to login page after 2 seconds
