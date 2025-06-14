@@ -1,6 +1,6 @@
 /* src/App.css */
 body{
-  overflow: hidden;
+  overflow: auto;
 }
 .response-submitted-page {
   display: flex;
@@ -590,5 +590,11 @@ button:hover {
   color: white;
   font-size: 0.5rem;
   cursor: pointer;
+}
+.login-section h2{
+  font-size: 2rem;
+}
+.login-section p{
+  font-size: 1rem;
 }
 }
