@@ -271,7 +271,7 @@ const FillMemoryForm = () => {
     ],
     Basketball: [
     "Arushi Bansal","Akanksha Kadam","Aabir","Ajay Raj", "Akanksha Jain","Alfia Zareen Khan","Nidhi Pandey","Prasanth","Rohit Auti", "Shrunoti",
-    "Sudeshna Dhar","Yaamesh"
+    "Sudeshna Dhar","Yaamesh","Diya","Anmol"
     ],
     "Board Games": [
       "Jatin Deshpande","Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
