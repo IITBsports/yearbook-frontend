@@ -26,7 +26,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
     };
 
     const sportFolder = sportToFolderMap[sportName] || sportName.replace(/\s+/g, '');
-    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'PNG'];
+    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'PNG','HEIC'];
     
     // Only generate the most likely name variations
     const nameVariants = [];
@@ -248,29 +248,33 @@ const FillMemoryForm = () => {
 
   const sportsPlayers = {
     "Institute Sports Council": [
-      "Siddharth Farkiya","Kanishk Garg","Akanksha Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi",
-      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal",
+      "Siddharth Farkiya","Kanishk Garg","Akanksha Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi Bansal",
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela"
     ],
+    Aavhan:[
+    "Abhishek Singh","Alfia Khan","Arya Agawal","Dhritiram Sriram","Gaurav Soni","Jenil Dayma","Piyush Jalwaniya","Ramresh Mina","Sahil Zodge","Shreya Biswas","Trilok Panchal"
+  ,"Gopal Maheshwari","Tushir Doshi", "Mudit Sethia"],
+
     Aquatics: [
-      "Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav"
+      "Ritam","Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav"
     ],
 
     Athletics: [
-  "Annie D Souza", "Dhruv Sorathiya", "Kanad", "Lakshay Bhadana",
+  "Saloni Kajal","Annie D Souza", "Dhruv Sorathiya", "Kanad", "Lakshay Bhadana",
   "Nitin Kumar", "Rangaswamy","Samiksha Yadav",
   "Shashank Joshi", "Tejas Bhosale"
   ],
 
     Badminton: [
-      "Gopal Maheshwari", "Tanay Tayal", "Soumya Mandal", "Ayush Narwal", "Aditya Pratap Goswami",
+      "Siddharth Farkiya","Gopal Maheshwari", "Tanay Tayal", "Soumya Mandal", "Ayush Narwal", "Aditya Pratap Goswami",
       "Sanika", "Shainal Jain", "Srinithya", "Tejal Sharan", "Jathin Sai Ganesh", "Lokesh Soni"
     ],
     Basketball: [
-    "Aabir","Ajay Raj", "Akanksha Jain","Alfia Zareen Khan","Nidhi Pandey","Prasanth","Rohit Auti", "Shrunoti",
+    "Arushi Bansal","Akanksha Kadam","Aabir","Ajay Raj", "Akanksha Jain","Alfia Zareen Khan","Nidhi Pandey","Prasanth","Rohit Auti", "Shrunoti",
     "Sudeshna Dhar","Yaamesh"
     ],
     "Board Games": [
-      "Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
+      "Jatin Deshpande","Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
       "Arham Jain", "Nitish Bhat"
     ],
     Cricket: [
@@ -279,28 +283,28 @@ const FillMemoryForm = () => {
       "Aakash Verma", "Soham", "Satya"
     ],
     Football: [
-      "Dhritiman Sriram", "Arya Agarwal", "Sahil Zodge",
+      "Ayush Dhole", "Ishaan Kothari","Dhritiman Sriram", "Arya Agarwal", "Sahil Zodge",
       "Suyash Bhandare", "Aditya Kumar", "Siddharth Kaushik", "Sridhar Sahu", "Harshraj Chaudhri",
       "Himank Gupta", "Rubul Gogoi", "Johan Julio"
     ],
-    Hockey: ["Aayush","Alok","Diljit","Harsh","Nikhil","Shani","Shrikant","Utkarsh","Varun"],
+    Hockey: ["Karan","Aayush","Alok","Diljit","Harsh","Nikhil","Shani","Shrikant","Utkarsh","Varun"],
     "Indian Games": [
-      "Kamlesh Mali", "Abhishek Madike", "Abhishek Kushwah", "Pooja",
+      "Ajit Pal Singh","Kamlesh Mali", "Abhishek Madike", "Abhishek Kushwah", "Pooja",
       "Samiksha Yadav", "Shreyas Lipare", "Isha Dev", "Sanjyot Bhure", "Korimi Vennela",
       "Naveen Depavath", "Ganesh", "Sai Deepthi", "Aryan Chourasia", "Jaswanthi Masada",
       "Sri Nithya Soupati", "Eswar", "Nikita Kanwar", "Prashasti Abojwar", "Tejashwini Palithya",
       "Bhuvan", "Siddarth"
     ],
     "Lawn Tennis": [
-      "Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
+      "Aryan Chourasia","Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
       "Arunjoy", "Himanshu"
     ],
-    Squash: ["Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
+    Squash: ["Pratham Chandra","Rituraj Chaudhary","Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
     "Table Tennis": [
-      "Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
+      "Kanishk Garg","Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
     ],
     Volleyball: [
-      "Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
+      "Srajan","Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
       "Kunj Patel", "Akhilesh Prasad", "Dhurba Hazarika", "Sushmita Negi"
     ],
     Weightlifting: ["Loveneesh Lawaniya", "Sourabh Chouhan", "Faheem Yoonus", "Priya Singh"],
