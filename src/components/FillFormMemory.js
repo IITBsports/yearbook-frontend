@@ -26,7 +26,7 @@ const PersonPhotoDisplay = ({ personName, sport }) => {
     };
 
     const sportFolder = sportToFolderMap[sportName] || sportName.replace(/\s+/g, '');
-    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'PNG','HEIC'];
+    const extensions = ['jpg', 'jpeg', 'png', 'JPG', 'PNG'];
     
     // Only generate the most likely name variations
     const nameVariants = [];
