@@ -249,7 +249,7 @@ const FillMemoryForm = () => {
   const sportsPlayers = {
     "Institute Sports Council": [
       "Siddharth Farkiya","Kanishk Garg","Akanksha Kadam","Ishaan Kothari", "Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi Bansal",
-      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela", "Sanjyot Bhure"
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela", "Sanjyot Bhure","Anmol","Tejaswini Palithya",
     ],
     Aavhan:[
     "Abhishek Singh","Alfia Khan","Arya Agawal","Dhritiram Sriram","Gaurav Soni","Jenil Dayma","Piyush Jalwaniya","Ramresh Mina","Sahil Zodge","Shreya Biswas","Trilok Panchal"
