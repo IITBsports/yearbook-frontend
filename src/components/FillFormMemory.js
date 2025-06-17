@@ -262,7 +262,7 @@ const FillMemoryForm = () => {
     Athletics: [
   "Saloni Kajal","Annie D Souza", "Dhruv Sorathiya", "Kanad", "Lakshay Bhadana",
   "Nitin Kumar", "Rangaswamy","Samiksha Yadav",
-  "Shashank Joshi", "Tejas Bhosale"
+  "Shashank Joshi", "Tejas Bhosale","Nayantara","Shreyas","Manu"
   ],
 
     Badminton: [
