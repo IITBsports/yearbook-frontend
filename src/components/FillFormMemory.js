@@ -252,7 +252,7 @@ const FillMemoryForm = () => {
       "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela", "Sanjyot Bhure","Anmol","Tejaswini Palithya",
     ],
     Aavhan:[
-    "Abhishek Singh","Alfia Khan","Arya Agawal","Dhritiram Sriram","Gaurav Soni","Jenil Dayma","Piyush Jalwaniya","Ramresh Mina","Sahil Zodge","Shreya Biswas","Trilok Panchal"
+    "Abhishek Singh","Alfia Khan","Arya Agarwal","Dhritiram Sriram","Gaurav Soni","Jenil Dayma","Piyush Jalwaniya","Ramresh Mina","Sahil Zodge","Shreya Biswas","Trilok Panchal"
   ,"Gopal Maheshwari","Tushir Doshi", "Mudit Sethia"],
 
     Aquatics: [
