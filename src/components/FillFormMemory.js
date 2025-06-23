@@ -293,7 +293,7 @@ const FillMemoryForm = () => {
       "Samiksha Yadav", "Shreyas Lipare", "Isha Dev", "Sanjyot Bhure", "Korimi Vennela",
       "Naveen Depavath", "Ganesh", "Sai Deepthi", "Aryan Chourasia", "Jaswanthi Masada",
       "Sri Nithya Soupati", "Eswar", "Nikita Kanwar", "Prashasti Abojwar", "Tejashwini Palithya",
-      "Bhuvan", "Siddarth"
+      "Bhuvan", "Siddarth","Hitarth Chauhan"
     ],
     "Lawn Tennis": [
       "Aryan Chourasia","Siyona Bansal", "Mudit Sethia", "Ayush Raisoni", "Ashank Deo",
@@ -301,7 +301,7 @@ const FillMemoryForm = () => {
     ],
     Squash: ["Pratham Chandra","Rituraj Chaudhary","Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
     "Table Tennis": [
-      "Kanishk Garg","Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik"
+      "Kanishk Garg","Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik", "Shivaansh"
     ],
     Volleyball: [
       "Srajan","Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
