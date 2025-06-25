@@ -249,7 +249,7 @@ const FillMemoryForm = () => {
   const sportsPlayers = {
     "Institute Sports Council": [
       "Siddharth Farkiya","Kanishk Garg","Akanksha Kadam","Ishaan Kothari","Utkarsh","Rituraj Chaudhary","Ayush Dhole","Pratham Chandra", "Srajan Jain","Karan","Arushi Bansal",
-      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela", "Sanjyot Bhure","Anmol","Tejaswini Palithya",
+      "Ajit Pal Singh","Jatin Deshpande","Kavan Vavadiya","Aryan Chourasia", "Ritam", "Saloni Kajal","Korimi Vennela", "Sanjyot Bhure","Anmol","Tejaswini Palithya","Ayush Raisoni"
     ],
     Aavhan:[
     "Abhishek Singh","Alfia Khan","Arya Agarwal","Dhritiram Sriram","Gaurav Soni","Jenil Dayma","Piyush Jalwaniya","Ramresh Mina","Sahil Zodge","Shreya Biswas","Trilok Panchal"
@@ -271,7 +271,7 @@ const FillMemoryForm = () => {
     ],
     Basketball: [
     "Arushi Bansal","Akanksha Kadam","Aabir","Ajay Raj", "Aakanksha Jain","Alfia Zareen Khan","Nidhi Pandey","Prasanth","Rohit Auti", "Shrunoti",
-    "Sudeshna Dhar","Yaamesh","Diya","Anmol"
+    "Sudeshna Dhar","Yaamesh","Anmol"
     ],
     "Board Games": [
       "Jatin Deshpande","Chavda Pankitkumar", "Yash Kulkarni", "Harsshh Wankayday",
