@@ -301,7 +301,7 @@ const FillMemoryForm = () => {
     ],
     Squash: ["Pratham Chandra","Rituraj Chaudhary","Krithika Mittal", "Atharva Arora", "Prateek Neema", "Soumya Kedia"],
     "Table Tennis": [
-      "Kanishk Garg","Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik", "Shivaansh"
+      "Kanishk Garg","Neeraja Patil", "Harshwardhan", "Priyam", "Mohit", "Suman", "Shreya", "Hrithik", "Shivansh"
     ],
     Volleyball: [
       "Srajan","Yameesh Kulhar", "Pratiksha Deka", "Tanisha Kumari", "Akhilesh Kumar",
