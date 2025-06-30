@@ -256,7 +256,7 @@ const FillMemoryForm = () => {
   ,"Gopal Maheshwari","Tushir Doshi", "Mudit Sethia"],
 
     Aquatics: [
-      "Ritam","Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav"
+      "Ritam","Anubha","Riddhi","Sania","Sarthak","Suyash","Utkarsh","Utsav","Abhay"
     ],
 
     Athletics: [
